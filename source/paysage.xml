@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<landscape name="domotique">
+   <!-- première zone - la chambre et la température -->
+   <zone name="zone_1" ID="1">
+       <phenomenon name="temperature" type="sinus">
+	        <param offset="12" ampl="7" period="1440" />
+	        <!-- le choix des paramètres est spécifique au type. donc pas d'ambiguité. -->
+	    </phenomenon>
+	    <state name="chambre"/>
+	        <param iphen ="TBD" ictrl = "TBD" />
+	    <control name="CTL_Tmp" type="TOR"/>
+	        <param tresh-high = "TBD" ctrl_min = "TBD" />
+	</zone>
+	<!-- deuxième zone - l'aquarium et son ph -->
+		<zone name="zone_2" ID="2">
+			<phenomenon name="lumiere" type="pulse">
+				<param interval="1" begin="0" end="300" slope="0" offset="10" />
+				<param interval="2" begin="301" end="400" slope="6" offset="10" />
+				<param interval="3" begin="401" end="700" slope="0" offset="50"/>
+				<param interval="4" begin="701" end="1000" slope="-5.5" offset="50" />
+			</phenomenon>
+			<state name="aquarium" />
+			<control name="CTL_Tmp" type="proportionnel" />
+	</zone>
+	<server name="server">
+	</server>
+	<simulation name="simulation 1" ID="1">
+	</simulation>
+</landscape>

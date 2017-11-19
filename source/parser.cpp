@@ -13,6 +13,7 @@ using namespace std;
 void parser()
 {
 	//-------------LECTURE DU FICHIER XML ET GESTION ERREUR -------------------------------
+	// import local adress of folder and use it to open paysage.xml
 	TiXmlDocument doc( "C:/Users/maxch/Desktop/paysage.xml" );
 	bool loadOkay = doc.LoadFile();
 	if ( !loadOkay )
@@ -45,36 +46,36 @@ void parser()
 				//----------- EXTRACTION attribut type du phenomene: NIVEAU 3 -------------------------
 				// --------------------- EXTRACTION DES PARAMETRES DU PHENOMENE SELON SON TYPE : NIVEAU 4 ---------
 				if (strcmp(child3->Attribute("type"),"sinus")==0){
-				// Détection d'un phénomène sinusoïdal
-				TiXmlElement* child4 = child3->FirstChild("param")->ToElement();
-				// ---------- EXTRACTION d’une seule série de paramètres pour le sinus: NIVEAU 4 -------------
-				cout << "offset phénomène : " << child4->Attribute( "offset") <<endl;
-				// EXTRACTION paramètre offset du phenomene: NIVEAU 5
-				cout << "amplitude du phénomène : " << child4->Attribute( "ampl") <<endl;
-				// EXTRACTION paramètre ampl du phenomene: NIVEAU 5
-				cout << "période du phénomène : " << child4->Attribute( "period") <<endl;
-				// EXTRACTION paramètre periode du phenomene: NIVEAU 5
-			}
-		else
-		if (strcmp(child3->Attribute("type"),"pulse")==0)
-		{// Détection d'un phénomène pulsé
-			for( TiXmlElement* child4 = child3->FirstChild("param")->ToElement();
-				child4;
-				child4=child4->NextSiblingElement())
-			{ 	//BOUCLE pour extraire plusieurs séries de paramètres "param" du phenomene pulsé.
-				//----- EXTRACTION d’une série de paramètres pour le pulsé: NIVEAU 4 ----------
-				cout << "interval du phénomène : " << child4->Attribute( "interval") <<endl;
-				// ----------- EXTRACTION paramètre interval du phenomene: NIVEAU 5 -------------------
-				cout << "début de la tranche en mn : " << child4->Attribute( "begin") <<endl;
-				// EXTRACTION paramètre "begin" du phenomene: NIVEAU 5
-				cout << "fin de la tranche en minutes : " << child4->Attribute( "end") <<endl;
-				// EXTRACTION paramètre "end" du phenomene: NIVEAU 5
-				cout << "pente de la tranche : " << child4->Attribute( "slope") <<endl;
-				// EXTRACTION paramètre "slope" du phenomene: NIVEAU 5
-				cout << "offset de l’intervalle: " << child4->Attribute( "offset") <<endl;
-				// EXTRACTION paramètre offset du phenomene: NIVEAU 5
+					// Détection d'un phénomène sinusoïdal
+					TiXmlElement* child4 = child3->FirstChild("param")->ToElement();
+					// ---------- EXTRACTION d’une seule série de paramètres pour le sinus: NIVEAU 4 -------------
+					cout << "offset phénomène : " << child4->Attribute( "offset") <<endl;
+					// EXTRACTION paramètre offset du phenomene: NIVEAU 5
+					cout << "amplitude du phénomène : " << child4->Attribute( "ampl") <<endl;
+					// EXTRACTION paramètre ampl du phenomene: NIVEAU 5
+					cout << "période du phénomène : " << child4->Attribute( "period") <<endl;
+					// EXTRACTION paramètre periode du phenomene: NIVEAU 5
 				}
-			}
+				else
+				if (strcmp(child3->Attribute("type"),"pulse")==0)
+				{// Détection d'un phénomène pulsé
+					for( TiXmlElement* child4 = child3->FirstChild("param")->ToElement();
+						child4;
+						child4=child4->NextSiblingElement())
+					{ 	//BOUCLE pour extraire plusieurs séries de paramètres "param" du phenomene pulsé.
+						//----- EXTRACTION d’une série de paramètres pour le pulsé: NIVEAU 4 ----------
+						cout << "interval du phénomène : " << child4->Attribute( "interval") <<endl;
+						// ----------- EXTRACTION paramètre interval du phenomene: NIVEAU 5 -------------------
+						cout << "début de la tranche en mn : " << child4->Attribute( "begin") <<endl;
+						// EXTRACTION paramètre "begin" du phenomene: NIVEAU 5
+						cout << "fin de la tranche en minutes : " << child4->Attribute( "end") <<endl;
+						// EXTRACTION paramètre "end" du phenomene: NIVEAU 5
+						cout << "pente de la tranche : " << child4->Attribute( "slope") <<endl;
+						// EXTRACTION paramètre "slope" du phenomene: NIVEAU 5
+						cout << "offset de l’intervalle: " << child4->Attribute( "offset") <<endl;
+						// EXTRACTION paramètre offset du phenomene: NIVEAU 5
+						}
+					}
 
 			// ------------------------------ EXTRACTION DE l'ETAT DE LA ZONE: NIVEAU 2
 			TiXmlElement* child5 = child2->FirstChild("state")->ToElement();
