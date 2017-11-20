@@ -24,6 +24,7 @@
 	</zone>
 	<server name="server">
 	</server>
-	<simulation name="simulation 1" ID="1">
-	</simulation>
+	 <!-- <simulation name="simulation 1" ID="1"> -- pas de simulation dans le paysage 
+	 comme lindique lenonce.
+	</simulation> -->
 </landscape>
